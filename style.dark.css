@@ -1,0 +1,155 @@
+body {
+  margin: 0 auto;
+  padding: 12vh 10vmin;
+  max-width: 35em;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.5em;
+  color: #fff;
+  background-color: #1d1d1d;
+}
+
+h1 {
+  font-weight: 400;
+}
+h2 {
+  font-weight: 500;
+}
+
+a {
+  color: #0070e0;
+}
+
+*[contenteditable="true"] {
+  display: inline-block;
+}
+
+body.loaded:not(.edited) #placeholder {
+  display: block;
+}
+
+#placeholder {
+  display: none;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  position: absolute;
+}
+
+body.drag #content {
+  outline: 3px dashed #ccc;
+  background-color: #2d2d2d;
+  border-radius: 1em;
+  pointer-events: all;
+}
+
+#content,
+#placeholder {
+  margin: -1em;
+  padding: 1em;
+  min-height: 7em;
+}
+
+#content {
+  width: 100%;
+  outline: none;
+}
+#content:focus {
+  outline-color: #ccc;
+}
+
+#doc-title {
+  outline: none;
+  min-width: 180px;
+  top: 0;
+  position: absolute;
+  padding: 0.5em 0;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+body.edited #doc-title:empty:before,
+#doc-title:focus:empty:before {
+  content: "untitled";
+  color: rgba(255, 255, 255, 0.333);
+}
+
+#doc-title:focus {
+  border-bottom: 1px solid #ccc;
+}
+
+#doc-title:empty:before {
+  background: transparent;
+}
+
+#content:empty:before {
+  content: attr(placeholder);
+  color: rgba(255, 255, 255, 0.2);
+  background: transparent;
+}
+#doc-file {
+  border-radius: 1em;
+  background: #2d2d2d;
+  padding: 0.25em 1em;
+  font-size: smaller;
+  margin-bottom: 2em;
+}
+#doc-file:empty {
+  display: none;
+}
+
+#ib-info {
+  pointer-events: all;
+}
+#ib-info:hover {
+  pointer-events: all;
+  color: white;
+}
+
+/*#toolbar a#copy {
+  transition: transform 1s;
+  cursor: default;
+}
+
+#copy:active {
+  transform:translate(0, -0.5em);
+  transition: transform 100ms;
+  color:red;
+}
+*/
+
+#sharehint {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+}
+@media only screen and (max-device-width: 480px) {
+  #twitter,
+  #copy {
+    display: none;
+  }
+  #sharehint {
+    display: block;
+  }
+  #menu-share-hint {
+    display: none;
+  }
+}
+
+#toolbar button {
+  vertical-align: baseline;
+
+  font-family: monospace;
+}
+
+#toolbar a.invalid {
+  text-decoration: line-through;
+}
+
+#length {
+  opacity: 0.54;
+}

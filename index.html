@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tiny</title>
+    <link rel='stylesheet' href='style.dark.css'>
+    <link rel='icon' href='/app.ico'/>
+</head>
+<body>
+
+    <h1 id='title' contenteditable="true">tiny.marcusj.org</h1>
+
+    <div id='content' class='content' contenteditable="true">
+
+    </div>
+
+    <a id='opener' href='' target='_blank'>open</a>
+
+    <script src='/lz-string.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/marked/marked.min.js'></script>
+    <script>
+
+        const params = window.location.hash;
+        if (params) {
+            data = params.substring(1).split('/');
+            //document.head.innerHTML = '';
+            document.title = decodeURI(data[0]);
+            document.body.innerHTML = marked.marked(LZString.decompressFromBase64(data[1]));
+        } else {
+
+            function update_opener() {
+                document.getElementById('opener').href = '#' + encodeURI(document.getElementById('title').innerText) + '/' + LZString.compressToBase64(document.getElementById('content').innerText);
+            }
+
+            document.getElementById('content').addEventListener("input", update_opener);
+            document.getElementById('title').addEventListener("input", update_opener);
+
+            var analytics = document.createElement('script');
+            analytics.src = 'https://analytics.marcusj.org/analytics.js';
+            analytics.onload = function() {
+                console.log("loaded analytics");
+            }
+            document.body.appendChild(analytics);
+
+        }
+
+    </script>
+    
+</body>
+</html>
