@@ -1,4 +1,4 @@
-# What is [tiny](https://tiny.marcusj.tech)
+# What is [tiny](https://tiny.marcusj.org)
 
 Everything in a tiny site is contained **within the URL bar**.
 
